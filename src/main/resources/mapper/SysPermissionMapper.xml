@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lft.mapper.SysPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.lft.domain.SysPermission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="permissiom_url" jdbcType="VARCHAR" property="permissiomUrl" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="res_type" jdbcType="VARCHAR" property="resType" />
+    <result column="permission_detail" jdbcType="VARCHAR" property="permissionDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, permission_name, permission_code, permissiom_url, pid, res_type, permission_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lft.domain.SysPermission">
+    insert into sys_permission (id, permission_name, permission_code, 
+      permissiom_url, pid, res_type, 
+      permission_detail)
+    values (#{id,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}, #{permissionCode,jdbcType=VARCHAR}, 
+      #{permissiomUrl,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{resType,jdbcType=VARCHAR}, 
+      #{permissionDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lft.domain.SysPermission">
+    insert into sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="permissionName != null">
+        permission_name,
+      </if>
+      <if test="permissionCode != null">
+        permission_code,
+      </if>
+      <if test="permissiomUrl != null">
+        permissiom_url,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="resType != null">
+        res_type,
+      </if>
+      <if test="permissionDetail != null">
+        permission_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permissiomUrl != null">
+        #{permissiomUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="resType != null">
+        #{resType,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDetail != null">
+        #{permissionDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lft.domain.SysPermission">
+    update sys_permission
+    <set>
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        permission_code = #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permissiomUrl != null">
+        permissiom_url = #{permissiomUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="resType != null">
+        res_type = #{resType,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDetail != null">
+        permission_detail = #{permissionDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lft.domain.SysPermission">
+    update sys_permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_code = #{permissionCode,jdbcType=VARCHAR},
+      permissiom_url = #{permissiomUrl,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      res_type = #{resType,jdbcType=VARCHAR},
+      permission_detail = #{permissionDetail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
